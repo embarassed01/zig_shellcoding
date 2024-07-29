@@ -57,17 +57,11 @@ pub const UNICODE_STRING: type = extern struct {
     pub fn equals(s: UNICODE_STRING, o: []const u8) bool {
         var i: usize = 0;
         while (i < s.Length / 2) : (i += 1) {
-            if (@as(u8, @truncate(s.Buffer[i])) == o[i]) {
-                continue;
-            } else {
-                return false;
-            }
+            if (@as(u8, @truncate(s.Buffer[i])) == o[i])
+                continue else return false;
         }
-        if (i != o.len) {
-            return false;
-        } else {
-            return true;
-        }
+        if (i != o.len)
+            return false else return true;
     }
 
     pub fn format(s: UNICODE_STRING, comptime _: []const u8, _: std.fmt.FormatOptions, writer: anytype) !void {
